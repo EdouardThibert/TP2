@@ -2,23 +2,29 @@
 #TP2
 
 import random
-
+import time
 chiffre_a_trouver = random.randint(1,100)
-essai = int(input("Devinez le nombre"))
+nombre_dessais = 10
 
 play_game = True
-point_de_vie = 10
 while play_game:
-    print("Il faut deviner le nombre")
-    point_de_vie -= 2
-    if point_de_vie < 0:
+    essai = int(input("Devinez le nombre entre 1 et 100\n"))
+    if essai == chiffre_a_trouver:
+        print("Vous avez trouvé le bon nombre")
+        time.sleep(3)
+        print("Fin du programme")
+        play_game = False
+    elif essai < chiffre_a_trouver:
+        nombre_dessais = nombre_dessais - 1
+        print("Plus Haut\n")
+    elif essai > chiffre_a_trouver:
+        print("Plus Bas\n")
+        nombre_dessais = nombre_dessais - 1
+    else:
+        print("C'est pas bon")
+    if nombre_dessais == 1:
+        print("Vous avez raté")
+        time.sleep(3)
+        print("Fin du programme")
         play_game = False
 
-if essai == chiffre_a_trouver:
-    print("Vous avez trouvé le bon nombre")
-elif essai < chiffre_a_trouver:
-    print("Plus Haut")
-elif essai > chiffre_a_trouver:
-    print("Plus Petit")
-else:
-    print("C'est pas bon")
